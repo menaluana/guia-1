@@ -1,0 +1,258 @@
+import java.util.Scanner;
+
+// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
+// then press Enter. You can now see whitespace characters in your code.
+public class Main {
+    public static void main(String[] args) {
+
+       /*Empleado nuevoEmpleado = new Empleado(46012968,"JUAN","MARTINEZ",20000);
+
+       System.out.println("El salario anual es: "+ nuevoEmpleado.saladioAnual());
+       System.out.println(nuevoEmpleado.imprimirInformacion());
+
+       Empleado carlos = new Empleado(23456345, "CARLOS", "GUTIERREZ", 25000);
+       carlos.aumentoPorcentaje(0.1);
+       Empleado ana = new Empleado(34234123, "ANA", "SANCHEZ", 27500);
+
+       System.out.println(carlos.imprimirInformacion());
+       System.out.println(ana.imprimirInformacion());
+
+       Banco nuevoBanco = new Banco(777, "Martin", 15000);
+       System.out.println("DINERO + EL DEPOSITADO" + nuevoBanco.depositarDinero(2500));
+       System.out.println("DINERO - EL EXTRAIDO " + nuevoBanco.extraerDinero(1500));
+       nuevoBanco.extraerDinero(30000);
+       System.out.println("MOSTRAR CUENTA" + nuevoBanco.mostrar());
+
+        Libro libroNuevo = new Libro ("El Quijote", "Miguel de Cervantes", 500, 10);
+        Libro libroNuevo1 = new Libro ("Cien años de soledad", "Gabriel Garcia Marquez", 700, 5);
+        System.out.println(libroNuevo.mostrarLibro());
+        System.out.println(libroNuevo1.mostrarLibro());
+        libroNuevo.vender(3);
+        System.out.println(libroNuevo.mostrarLibro());
+        libroNuevo1.vender(8);
+        libroNuevo1.incrementarCopias(5);
+        System.out.println(libroNuevo1.mostrarLibro());*/
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese un Item de venta: ");
+        String item = scanner.next();
+        scanner.nextLine();
+        System.out.println("Ingrese la descripcion: ");
+        String desc = scanner.next();
+        scanner.nextLine();
+        System.out.println("Ingrese la cantidad ");
+        int cant = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Ingrese el precio ");
+        double precio = scanner.nextDouble();
+        scanner.nextLine();
+
+        ItemDeVenta nuevoItem = new ItemDeVenta(desc,cant,precio);
+        System.out.println(nuevoItem.muestraInfo());
+
+
+
+
+    }
+    }
+
+    clase EMPLEADO 
+
+    class Empleado {
+    private int dni;
+    private String nombre;
+    private String apellido;
+    private int salarioMensual;
+
+    public Empleado (int dni, String nombre, String apellido, int salarioMensual)
+    {
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.salarioMensual = salarioMensual;
+
+    }
+    //metodos
+    public int saladioAnual ()
+    {
+        int salarioAnual = salarioMensual * 12;
+        return salarioAnual;
+        /* return getSalario()*12;*/
+    }
+    public double aumentoPorcentaje (double incremento)
+    {
+        this.salarioMensual *= (1+incremento);
+        return salarioMensual;
+    }
+    public String imprimirInformacion ()
+    {
+       return ("DNI: "+ dni + "\nNombre: "+ nombre + "\nApellido: " + apellido + "\nEl salario aumentado es: " + salarioMensual);
+    }
+
+
+    }
+
+    clase banco
+     class Banco {
+    private int identificador;
+    private String nombre;
+    private int balance;
+
+    public Banco (int identificador, String nombre, int balance)
+    {
+        this.identificador = identificador;
+        this.nombre = nombre;
+        this.balance = balance;
+    }
+
+    public int depositarDinero (int ingreso)
+    {
+        this.balance = balance + ingreso;
+        return balance;
+    }
+
+    public int extraerDinero (int dineroAsacar)
+    {
+        if (dineroAsacar < balance)
+        {
+            balance = balance - dineroAsacar;
+
+        } else{
+            System.out.println("NO DISPONE DE PLATA SUFICIENTE PARA RETIRAR!");
+        }
+        return balance;
+
+    }
+
+     public String mostrar ()
+    {
+        return ("identificador: " + identificador + "\nnombre: " + nombre + "\nbalance: " + balance);
+
+    }
+
+}
+
+CLASE LIBRO
+class Libro {
+    private int id;
+    private static int contador = 0;
+    private String titulo;
+    private String autor;
+    private int precio;
+    private int cantidadCopias;
+
+    public Libro (String titulo, String autor, int precio, int cantidadCopias)
+    {
+        id = contador;
+        contador ++;
+        this.titulo = titulo;
+        this.autor = autor;
+        this.precio = precio;
+        this.cantidadCopias = cantidadCopias;
+
+    }
+
+    public int getCantidadCopias() {
+        return cantidadCopias;
+    }
+    public int getPrecio() {
+        return precio;
+    }
+    public String getAutor() {
+        return autor;
+    }
+    public String getTitulo() {
+        return titulo;
+    }
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void vender (int cantidadCopiasVender)
+    {
+
+        if (cantidadCopias < cantidadCopiasVender)
+        {
+            System.out.println("La operacion no es posible debido a que no hay suficientes copias para vender!");
+        }
+        else {
+            cantidadCopias = cantidadCopias - cantidadCopiasVender;
+        }
+
+    }
+
+    public void incrementarCopias (int cantidadAincrementar)
+    {
+        cantidadCopias = cantidadCopias + cantidadAincrementar;
+
+    }
+
+    public String mostrarLibro ()
+    {
+        return ("Id: " + id + "\nLibro: " + titulo + "\nAutor: " + autor + "\nPrecio: "+ precio + "\nCopias disponibles: " + cantidadCopias);
+    }
+
+
+
+
+
+}
+clase itemdeventa
+class ItemDeVenta {
+    private int identificador;
+    private static int conta = 0;
+    private String descripcion;
+    private int cantidad;
+   private double precioUnitario;
+
+   public ItemDeVenta (String descripcion, int cantidad, double precioUnitario)
+   {
+       this.cantidad = cantidad;
+       this.descripcion = descripcion;
+       this.precioUnitario = precioUnitario;
+
+   }
+    public double getPrecioUnitario() {
+        return precioUnitario;
+    }
+    public int getCantidad() {
+        return cantidad;
+    }
+    public int getIdentificador() {
+        return identificador;
+    }
+    public String getDescripcion() {
+        return descripcion;
+    }
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    public void setIdentificador(int identificador) {
+        this.identificador = identificador;
+    }
+    public void setPrecioUnitario(double precioUnitario) {
+        this.precioUnitario = precioUnitario;
+    }
+
+    public double calcularPrecioTotal (int cantidad, double precioUnitario)
+    {
+        precioUnitario = (double) (cantidad)  * precioUnitario;
+        return precioUnitario;
+    }
+
+    public String muestraInfo ()
+    {
+        return ("ItemDeVenta: " + identificador + "Descripcion: " + descripcion + "Cantidad: " + cantidad + "Precio unitario: " + precioUnitario + "TOTAL: " + calcularPrecioTotal(cantidad, precioUnitario));
+    }
+
+
+}
